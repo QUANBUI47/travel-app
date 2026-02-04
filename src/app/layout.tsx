@@ -1,0 +1,44 @@
+import "@/styles/globals.css";
+import { Metadata, Viewport } from "next";
+import clsx from "clsx";
+
+import { siteConfig } from "@/constants/site";
+import { fontSans } from "@/constants/fonts";
+
+export const metadata: Metadata = {
+  title: {
+    default: siteConfig.name,
+    template: `%s - ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
+};
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html suppressHydrationWarning lang="vi">
+      <head />
+      <body
+        className={clsx(
+          "min-h-screen text-foreground bg-transparent font-sans antialiased",
+          fontSans.variable,
+        )}
+      >
+        {children}
+      </body>
+    </html>
+  );
+}

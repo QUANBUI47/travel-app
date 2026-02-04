@@ -1,0 +1,647 @@
+@import "tailwindcss";
+@plugin '../lib/utils/hero.ts';
+@source '../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+/* Removed missing primeicons import */
+/* @import "primeicons/primeicons.css"; */
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* --- Original Theme Variables --- */
+  --font-sans: "font", sans-serif;
+  --font-mono: "monospace", monospace;
+
+  --color-primary-dark: #0a3d91;
+  --color-primary-light: #1565c0;
+
+  --color-danger: #c41e3a;
+  --color-danger-dark: #a91d32;
+  --color-danger-light: #d32f2f;
+
+  --color-accent: #daa520;
+  --color-accent-dark: #b8860b;
+  --color-accent-light: #f4d03f;
+
+  --color-text-dark: #212529;
+  --color-text-medium: #495057;
+  --color-text-light: #6c757d;
+  --color-text-white: #ffffff;
+
+  --color-bg-white: #ffffff;
+  --color-bg-light: #f8f9fa;
+  --color-bg-section: #ffffff;
+
+  --color-border-light: rgba(0, 0, 0, 0.1);
+  --color-border-medium: rgba(0, 0, 0, 0.15);
+
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 5px 20px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.2);
+
+  /* --- New Design System Colors (Required for CusSelect) --- */
+  /* We strictly define colors here. We DO NOT override font sizes 
+     because the referenced variables (e.g. --cus-font-size-xs) are missing. */
+  
+  --font-sf-pro-display: "SF Pro Display", sans-serif;
+
+  --color-primary: #007044;
+  --color-primary-100: #eef6f3;
+  --color-primary-200: #d9eae3;
+  --color-primary-300: #b0d3c5;
+  --color-primary-400: #007044;
+  --color-primary-500: #00653d;
+  --color-primary-600: #005a36;
+  --color-primary-700: #005433;
+  --color-primary-800: #004329;
+  --color-primary-900: #00321f;
+  --color-primary-950: #002718;
+  
+  --color-scarlet-red: #ff4850;
+  --color-red-100: #ee0033;
+  --color-red-80: #f1335c;
+  --color-red-60: #f56685;
+  --color-red-20: #fcccd6;
+  --color-red-05: #fef2f5;
+  --color-red-02: #fffafb;
+  
+  --color-secondary: #111827;
+  --color-secondary-80: #1f2937;
+  --color-secondary-60: #4e4e4e;
+  --color-secondary-20: #a7a7a7;
+  
+  --color-neutral-110: #000000;
+  --color-neutral-100: #222222;
+  --color-neutral-80: #4e4e4e;
+  --color-neutral-60: #7a7a7a;
+  --color-neutral-40: #a7a7a7;
+  --color-neutral-20: #d3d3d3;
+  --color-neutral-10: #e9e9e9;
+  --color-neutral-05: #f4f4f4;
+  --color-neutral-02: #fbfbfb;
+  
+  --color-subtle: #4e4e4e;
+  --color-dark-green: #0e6245;
+  --color-light-green: #cbf4c9;
+  --color-dark-warning: #9c3f0f;
+  --color-light-warning: #f8e5ba;
+  --color-light-warning-2: #fff8ec;
+  --color-dark-red: #a43f49;
+  --color-light-red: #f6e9ec;
+  --color-dark-blue: #3769ce;
+  --color-blue-100: #0a2956;
+  --color-light-blue: #d8e0ee;
+  --color-deep-gray: #4f566b;
+  --color-border-gray: #e3e8ee;
+  --color-tag-gray: #d5dbe6;
+  --color-border-gray-2: #e6e6e6;
+  --color-pine-blue: #2ca196;
+  --color-grey: #eee3ea;
+  --color-light-blue-2: #507ae5;
+  --color-light-active: #b0d3c5;
+}
+
+/* --- Original Animations & Styles (Preserved) --- */
+#awan1,
+#awan2,
+#awan3 {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center top;
+  pointer-events: none;
+  overflow: visible;
+  clip-path: inset(0 0 0 0);
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+#awan1 {
+  top: -11%;
+  left: -10%;
+  width: 160%;
+  height: 293px;
+  background-size: 201px;
+  animation: ani-awan1 40s linear infinite;
+  will-change: transform;
+}
+
+#awan2 {
+  top: -10%;
+  left: 50%;
+  width: 160%;
+  height: 354px;
+  background-size: 848px;
+  transform: translateX(-50%);
+  animation: ani-awan2 70s linear infinite;
+  will-change: transform;
+}
+
+#awan3 {
+  bottom: 0;
+  left: 0;
+  width: 200%;
+  height: 279px;
+  background-repeat: repeat-x;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+  animation: ani-awan3 140s linear infinite;
+  will-change: transform;
+}
+
+@keyframes ani-awan1 {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes ani-awan2 {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes ani-awan3 {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+:root {
+  --primary-color: #0d47a1;
+  --primary-dark: #0a3d91;
+  --primary-light: #1565c0;
+  --danger-color: #c41e3a;
+  --danger-dark: #a91d32;
+  --danger-light: #d32f2f;
+  --secondary-color: #1976d2;
+  --secondary-dark: #1565c0;
+  --secondary-light: #42a5f5;
+  --accent-color: #daa520;
+  --accent-dark: #b8860b;
+  --accent-light: #f4d03f;
+  --text-dark: #212529;
+  --text-medium: #495057;
+  --text-light: #6c757d;
+  --text-white: #ffffff;
+  --bg-white: #ffffff;
+  --bg-light: #f8f9fa;
+  --bg-section: #ffffff;
+  --border-light: rgba(0, 0, 0, 0.1);
+  --border-medium: rgba(0, 0, 0, 0.15);
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 5px 20px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.2);
+  --font-base: 16px;
+  --font-normal: 400;
+  --transition: all 0.3s ease;
+  --font-sf-pro-display: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --color-neutral-05: #f4f4f4;
+  --color-neutral-10: #e9e9e9;
+  --color-neutral-60: #7a7a7a;
+  --color-neutral-100: #222222;
+  --color-red-100: #ee0033;
+}
+
+.form-lien-he {
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.register-input-base,
+.register-textarea-base {
+  width: 100% !important;
+  margin-bottom: 15px !important;
+}
+
+.register-input-wrapper {
+  height: 50px !important;
+  min-height: 50px !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: 25px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(10px) !important;
+  padding: 12px 20px !important;
+  transition: var(--transition) !important;
+  box-sizing: border-box !important;
+}
+
+.register-input-wrapper:hover {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  background: rgba(255, 255, 255, 0.18) !important;
+}
+
+.register-input-wrapper:focus-within,
+.register-input-wrapper[data-focus="true"] {
+  outline: none !important;
+  border-color: var(--color-accent) !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 4px 20px rgba(13, 71, 161, 0.3) !important;
+}
+
+.register-input-input {
+  color: var(--text-white) !important;
+  font-size: 15px !important;
+  font-weight: var(--font-normal) !important;
+  text-align: left !important;
+  width: 100% !important;
+  padding: 0 !important;
+}
+
+.register-input-input::placeholder {
+  color: rgba(255, 255, 255, 0.8) !important;
+  opacity: 1 !important;
+}
+
+.register-textarea-wrapper {
+  height: 120px !important;
+  min-height: 120px !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: 25px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(10px) !important;
+  padding: 12px 20px !important;
+  transition: var(--transition) !important;
+  box-sizing: border-box !important;
+  resize: vertical !important;
+}
+
+.register-textarea-wrapper:hover {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  background: rgba(255, 255, 255, 0.18) !important;
+}
+
+.register-textarea-wrapper:focus-within,
+.register-textarea-wrapper[data-focus="true"] {
+  outline: none !important;
+  border-color: var(--color-accent) !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 4px 20px rgba(13, 71, 161, 0.3) !important;
+}
+
+.register-textarea-input {
+  color: var(--text-white) !important;
+  font-size: 15px !important;
+  font-weight: var(--font-normal) !important;
+  text-align: left !important;
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+  resize: vertical !important;
+  vertical-align: top !important;
+  line-height: 1.5 !important;
+}
+
+.register-textarea-input::placeholder {
+  color: rgba(255, 255, 255, 0.8) !important;
+  opacity: 1 !important;
+}
+
+.project-card {
+  background: #fff;
+  transition: var(--transition);
+  min-height: 0;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+}
+
+.site-carousel-item {
+  transition: var(--transition);
+}
+
+.site-carousel-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+.leaflet-custom-marker,
+.leaflet-div-icon.leaflet-custom-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.leaflet-popup-custom-wrap .leaflet-popup-content-wrapper {
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  width: 280px;
+  box-sizing: border-box;
+}
+
+.leaflet-popup-custom-wrap .leaflet-popup-content {
+  margin: 0;
+  width: 280px !important;
+  max-width: 280px !important;
+  min-width: 280px;
+  box-sizing: border-box;
+}
+
+.leaflet-popup-custom-wrap .leaflet-popup-close-button {
+  color: #fff !important;
+  font-size: 22px !important;
+  font-weight: 700;
+  width: 28px !important;
+  height: 28px !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  top: 8px !important;
+  right: 8px !important;
+  background: rgba(0, 0, 0, 0.4) !important;
+  border-radius: 50% !important;
+  transition: background 0.2s;
+}
+
+.leaflet-popup-custom-wrap .leaflet-popup-close-button:hover {
+  color: #fff !important;
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+
+.popup-card {
+  width: 100%;
+  min-width: 280px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+.popup-card-img {
+  width: 100%;
+  height: 140px;
+  min-width: 280px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 12px 12px 0 0;
+}
+
+.popup-card-body {
+  padding: 12px;
+}
+
+.popup-card-clickable {
+  cursor: pointer;
+}
+
+.popup-card-title {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 15px;
+  color: #0d47a1;
+}
+
+.popup-card-location {
+  font-size: 12px;
+  color: #666;
+}
+
+body[data-full-map-open],
+html:has(body[data-full-map-open]) {
+  overflow: hidden !important;
+}
+
+.promo-video-wrapper {
+  display: inline-block;
+  position: relative;
+}
+
+.video-main {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.promo-video {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 150px;
+  height: 150px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.waves-block {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 150px;
+  height: 150px;
+}
+
+.waves {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  left: 0;
+  top: 0;
+  background: rgba(255, 255, 255, 0.4);
+  opacity: 0;
+  border-radius: 100%;
+  transform-origin: 50% 50%;
+  animation: waves 3s ease-in-out infinite;
+}
+
+.wave-1 {
+  animation-delay: 0s;
+}
+
+.wave-2 {
+  animation-delay: 1s;
+}
+
+.wave-3 {
+  animation-delay: 2s;
+}
+
+@keyframes waves {
+  0% {
+    transform: scale(0.2, 0.2);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(0.9, 0.9);
+    opacity: 0;
+  }
+}
+
+.video-popup {
+  position: relative;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background: #fff;
+  color: #7bbcb0;
+  text-decoration: none;
+  transition:
+    opacity 0.2s,
+    transform 0.2s,
+    background 0.2s;
+}
+
+.video-popup:hover {
+  color: #7bbcb0;
+  background: #e8f5f3;
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.video-popup .play-icon {
+  margin-left: 2px;
+}
+
+/* --- New Utilities (Filtered) --- */
+@layer components {
+  /* Added only explicitly defined shadows that don't rely on missing variables if possible.
+     Checking the variables above, most var(--cus-shadow-*) are NOT defined in :root.
+     If the user wants these, they must define the variables. 
+     I will comment these out if they break invalid property values,
+     but browser usually ignores invalid vars. 
+     To be safe, I'm keeping them as user requested "don't delete my css",
+     but the primary issue was the FONT override in @theme which cascades to all elements.
+     Shadow classes are opt-in. */
+     
+  .card1 { box-shadow: var(--cus-shadow-card1); }
+  .card2 { box-shadow: var(--cus-shadow-card2); }
+  .card3 { box-shadow: var(--cus-shadow-card3); }
+  .f2r-drop-shadow { box-shadow: var(--cus-shadow-drop); }
+  .shadow-card { box-shadow: var(--cus-shadow-card); }
+  .light-shadow { box-shadow: var(--cus-shadow-light); }
+  .footer-shadow { box-shadow: var(--cus-shadow-footer); }
+  .shadow-menu { box-shadow: var(--cus-shadow-menu); }
+  .shadow-bottom { box-shadow: var(--cus-shadow-footer); }
+  .drop-shadow-cart { box-shadow: var(--cus-shadow-cart); }
+
+  /* Popover styles - assuming they are used manually */
+  .popover-content-custom {
+    z-index: var(--cus-popover-z-index) !important;
+    min-width: var(--cus-popover-min-width) !important;
+    font-family: var(--font-sf-pro-display);
+    background-color: white !important;
+    border-radius: var(--cus-popover-border-radius) !important;
+    padding: var(--cus-popover-padding) !important;
+    box-shadow: var(--cus-popover-shadow) !important;
+  }
+}
+
+.cus-input {
+  font-family: var(--font-sf-pro-display, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+}
+
+.cus-input label {
+  color: var(--color-neutral-60, #7a7a7a);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 16px);
+  display: block;
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.2s;
+}
+
+.cus-input:has(input:focus) label,
+.cus-input .has-value label {
+  font-size: 12px;
+  line-height: 14px;
+  top: 8px;
+  transform: translateY(0);
+}
+
+.cus-input input {
+  background-color: var(--color-neutral-05, #f4f4f4) !important;
+  border-radius: 12px !important;
+  border: 1px solid var(--color-neutral-10, #e9e9e9) !important;
+  padding: 24px 8px 8px 8px !important;
+  font-size: 18px !important;
+  line-height: 22px !important;
+  font-weight: 400 !important;
+  color: var(--color-neutral-100, #222222) !important;
+  width: 100%;
+}
+
+.cus-input input:focus {
+  outline: none;
+}
+
+.cus-input input.ng-dirty {
+  /* Additional styling if needed */
+}
+
+.cus-input input:invalid,
+.cus-input input.border-red-100 {
+  border-color: var(--color-red-100, #ee0033) !important;
+}
+
+.cus-input input[type="number"]::-webkit-outer-spin-button,
+.cus-input input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.cus-input input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.cus-input input:disabled,
+.cus-input.p-disabled input {
+  opacity: 0.6;
+  background-color: var(--color-neutral-05, #f4f4f4);
+  color: var(--color-neutral-60, #7a7a7a);
+}
+
+.cus-input.p-disabled label {
+  color: var(--color-neutral-60, #7a7a7a);
+}
